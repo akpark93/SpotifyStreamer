@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".SearchArtistActivity">
+    tools:context=".TopTrackActivity">
 
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/artist_fragment"
-        android:name="com.example.andrewpark.spotifystreamer.SearchArtistActivityFragment"
-        tools:layout="@layout/fragment_search_artist"
+        android:id="@+id/track_fragment"
+        android:name="com.example.andrewpark.spotifystreamer.TopTrackActivityFragment"
+        tools:layout="@layout/fragment_top_track"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

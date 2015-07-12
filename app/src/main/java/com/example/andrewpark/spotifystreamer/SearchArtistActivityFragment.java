@@ -91,7 +91,6 @@ public class SearchArtistActivityFragment extends Fragment {
                         artistList.addAll(artistsPager.artists.items);
                     } else {
                         Toast.makeText(getActivity(), "Artist not found. Please search again...", Toast.LENGTH_SHORT).show();
-
                     }
                     mArtistAdapter.notifyDataSetChanged();
                 }

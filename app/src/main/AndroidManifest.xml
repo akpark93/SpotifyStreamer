@@ -21,7 +21,11 @@
         </activity>
         <activity
             android:name=".TopTrackActivity"
-            android:label="@string/title_activity_top_track" >
+            android:label="@string/title_activity_top_track"
+            android:parentActivityName=".SearchArtistActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.andrewpark.spotifystreamer.SearchArtistActivity"/>
         </activity>
     </application>
 

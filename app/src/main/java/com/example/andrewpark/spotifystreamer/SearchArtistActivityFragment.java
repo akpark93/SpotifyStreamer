@@ -1,5 +1,6 @@
 package com.example.andrewpark.spotifystreamer;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -63,6 +65,16 @@ public class SearchArtistActivityFragment extends Fragment {
                 Log.v(LOG_TAG, "query: " + newText);
                 updateArtistList(newText);
                 return true;
+            }
+        });
+
+        artist_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Artist artist = mArtistAdapter.getItem(position);
+                String spotifyId = artist.id;
+                Intent intent = new Intent(getActivity(), TopTrackActivity.class).putExtra(Intent.EXTRA_TEXT, spotifyId);
+                startActivity(intent);
             }
         });
 

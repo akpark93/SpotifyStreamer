@@ -9,12 +9,16 @@
 
     <ImageView
         android:id="@+id/list_item_artist_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"/>
 
     <TextView
         android:id="@+id/list_item_artist_textview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"/>
 
 </LinearLayout>

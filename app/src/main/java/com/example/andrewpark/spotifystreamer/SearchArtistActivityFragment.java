@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -48,19 +49,20 @@ public class SearchArtistActivityFragment extends Fragment {
         ListView artist_listView = (ListView) rootView.findViewById(R.id.listview_artist);
         artist_listView.setAdapter(mArtistAdapter);
 
-        //get artists while searching
+        //retrieve artists while searching
         SearchView artistSearch = (SearchView) rootView.findViewById(R.id.searchview_artist);
         artistSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.v(LOG_TAG,"query: " + query);
                 updateArtistList(query);
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                Log.v(LOG_TAG, "query: " + newText);
+                updateArtistList(newText);
+                return true;
             }
         });
 
@@ -70,7 +72,6 @@ public class SearchArtistActivityFragment extends Fragment {
 
     //get artist list info.
     public void updateArtistList(String query) {
-        Log.v(LOG_TAG, "Entered updateArtistList method with query: " + query);
         FetchArtistList artistTask = new FetchArtistList();
         artistTask.execute(query);
     }
@@ -79,31 +80,27 @@ public class SearchArtistActivityFragment extends Fragment {
     public class FetchArtistList extends AsyncTask<String,Void,Void> {
 
         @Override
-        protected Void doInBackground(String... params) {
+        protected Void doInBackground(String... artist) {
             api = new SpotifyApi();
             service = api.getService();
-            Log.v(LOG_TAG, "artist name query : " + params[0]);
-            service.searchArtists(params[0], new Callback<ArtistsPager>() {
+            service.searchArtists(artist[0], new Callback<ArtistsPager>() {
                 @Override
                 public void success(ArtistsPager artistsPager, Response response) {
-                    Log.v(LOG_TAG,"Success!");
                     artistList.clear();
-                    artistList.addAll(artistsPager.artists.items);
+                    if (!artistsPager.artists.items.isEmpty()) {
+                        artistList.addAll(artistsPager.artists.items);
+                    } else {
+                        Toast.makeText(getActivity(), "Artist not found. Please search again...", Toast.LENGTH_SHORT).show();
+
+                    }
                     mArtistAdapter.notifyDataSetChanged();
-                    Log.v(LOG_TAG, "artists successfully obtained! and updated adapter!");
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.e(LOG_TAG, "artists could not be obtained! no update in adapter!");
                 }
             });
             return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            mArtistAdapter.notifyDataSetChanged();
         }
     }
 }

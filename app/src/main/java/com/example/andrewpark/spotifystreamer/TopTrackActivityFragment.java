@@ -21,6 +21,7 @@ public class TopTrackActivityFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_top_track, container, false);
 
+
         return rootView;
     }
 }

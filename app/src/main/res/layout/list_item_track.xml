@@ -3,19 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="?android:attr/listPreferredItemHeight">
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/list_item_track_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_margin="10dp"
-        android:layout_gravity="center_vertical"
         android:layout_alignParentLeft="true"/>
 
     <TextView
         android:id="@+id/list_item_album_name"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/list_item_track_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

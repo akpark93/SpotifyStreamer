@@ -64,7 +64,7 @@ public class SearchArtistActivityFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 Log.v(LOG_TAG, "query: " + newText);
                 updateArtistList(newText);
-                return true;
+                return false;
             }
         });
 
